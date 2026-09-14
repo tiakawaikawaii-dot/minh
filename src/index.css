@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-ink-950 text-ink-100 font-sans antialiased;
+    overscroll-behavior: none;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-ink-600 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-ink-500;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-ink-900/80 backdrop-blur-xl border border-ink-700/50;
+  }
+
+  .glass-card {
+    @apply bg-ink-850/60 backdrop-blur-md border border-ink-700/40 rounded-2xl;
+  }
+
+  .btn-primary {
+    @apply bg-brand-500 hover:bg-brand-600 active:bg-brand-700 text-white font-semibold rounded-xl transition-all duration-200 active:scale-95;
+  }
+
+  .btn-ghost {
+    @apply text-ink-300 hover:text-ink-100 hover:bg-ink-700/50 rounded-xl transition-all duration-200;
+  }
+
+  .input-field {
+    @apply bg-ink-800 border border-ink-600 rounded-xl text-ink-100 placeholder:text-ink-400 focus:outline-none focus:border-brand-500 transition-colors;
+  }
+
+  .chat-scroll {
+    scroll-behavior: smooth;
+  }
+
+  .typing-dot {
+    @apply inline-block w-2 h-2 rounded-full bg-ink-400 mx-0.5;
+  }
+}
