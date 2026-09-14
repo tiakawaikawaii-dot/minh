@@ -238,8 +238,7 @@ export default function ChatPage({ chat, character, onBack, onChatCreated, onBra
     const allMessages = [...messages, userMsg];
     const mode = settings?.context_mode || 'standard';
     const nsfw = settings?.nsfw_enabled ?? true;
-    const response = generateCharacterResponse(character, allMessages, mode, nsfw);
-    await new Promise((resolve) => setTimeout(resolve, 600));
+    const response = await generateCharacterResponse(character, allMessages, mode, nsfw);
     streamResponse(response, chat);
   };
 
@@ -256,8 +255,7 @@ export default function ChatPage({ chat, character, onBack, onChatCreated, onBra
     setIsTyping(true);
     const mode = settings?.context_mode || 'standard';
     const nsfw = settings?.nsfw_enabled ?? true;
-    const response = generateCharacterResponse(character, messages.slice(0, -1), mode, nsfw);
-    await new Promise((resolve) => setTimeout(resolve, 600));
+    const response = await generateCharacterResponse(character, messages.slice(0, -1), mode, nsfw);
     if (currentChat) {
       streamResponse(response, currentChat, true);
     } else {
@@ -283,8 +281,7 @@ export default function ChatPage({ chat, character, onBack, onChatCreated, onBra
     if (action === 'whisper') {
       const chat = currentChat || (await ensureChat());
       setIsTyping(true);
-      const response = generateWhisperResponse(character, messages);
-      await new Promise((resolve) => setTimeout(resolve, 600));
+      const response = await generateWhisperResponse(character, messages);
       streamResponse(response, chat);
       showToast(`${COIN_LABELS.whisper} ativado! -${COIN_COSTS.whisper} moedas`);
       return;
@@ -293,8 +290,7 @@ export default function ChatPage({ chat, character, onBack, onChatCreated, onBra
     if (action === 'saga') {
       const chat = currentChat || (await ensureChat());
       setIsTyping(true);
-      const response = generateSagaResponse(character, messages);
-      await new Promise((resolve) => setTimeout(resolve, 800));
+      const response = await generateSagaResponse(character, messages);
       streamResponse(response, chat);
       showToast(`${COIN_LABELS.saga} ativado! -${COIN_COSTS.saga} moedas`);
       return;
